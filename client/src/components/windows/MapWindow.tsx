@@ -77,7 +77,7 @@ export default function MapWindow() {
     <div className="h-full p-4 flex flex-col">
       {/* Map Container */}
       <div 
-        className="relative flex-1 border border-holo-border rounded wireframe-grid cursor-crosshair"
+        className="relative flex-1 border border-holo-border rounded wireframe-grid cursor-crosshair overflow-hidden"
         onClick={handleMapClick}
         style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'center' }}
       >
@@ -187,13 +187,13 @@ export default function MapWindow() {
       </div>
       
       {/* Navigation Info */}
-      <div className="mt-2 flex justify-between text-xs">
+      <div className="mt-2 flex justify-between text-xs flex-shrink-0">
         <span className="opacity-80">Distance: {routeInfo.distance}</span>
         <span className="opacity-80">ETA: {routeInfo.eta}</span>
       </div>
       
       {/* Instructions */}
-      <div className="mt-1 text-xs opacity-60 text-center">
+      <div className="mt-1 text-xs opacity-60 text-center flex-shrink-0">
         Click on map to set destination
       </div>
     </div>

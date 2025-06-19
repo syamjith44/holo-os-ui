@@ -101,7 +101,7 @@ export default function CommunicationsWindow() {
       </div>
 
       {/* Communication Controls */}
-      <div className="p-4 border-t border-holo-border space-y-2">
+      <div className="p-4 border-t border-holo-border space-y-2 flex-shrink-0">
         {selectedContact ? (
           <>
             <div className="text-xs opacity-60 mb-2">

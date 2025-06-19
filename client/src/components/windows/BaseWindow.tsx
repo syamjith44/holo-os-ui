@@ -71,7 +71,7 @@ export default function BaseWindow({
   return (
     <div
       ref={windowRef}
-      className={`absolute window-glass hologram-glow rounded-lg shadow-2xl transition-all duration-200 ${
+      className={`absolute window-glass hologram-glow rounded-lg shadow-2xl transition-all duration-200 flex flex-col ${
         isDragging ? "hologram-glow-strong" : ""
       }`}
       style={{
@@ -86,7 +86,7 @@ export default function BaseWindow({
       {/* Window Header */}
       <div
         ref={dragRef}
-        className="window-header draggable flex items-center justify-between p-3 border-b border-holo-border rounded-t-lg cursor-move"
+        className="window-header draggable flex items-center justify-between p-3 border-b border-holo-border rounded-t-lg cursor-move flex-shrink-0"
       >
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 border border-holo-accent rounded" />
@@ -127,7 +127,7 @@ export default function BaseWindow({
       </div>
 
       {/* Window Content */}
-      <div className="h-full overflow-hidden rounded-b-lg">
+      <div className="flex-1 overflow-hidden rounded-b-lg">
         {children}
       </div>
     </div>

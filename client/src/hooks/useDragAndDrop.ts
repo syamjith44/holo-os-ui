@@ -7,7 +7,7 @@ interface DragOptions {
 }
 
 export function useDragAndDrop({ onDrag, onDragStart, onDragEnd }: DragOptions) {
-  const dragRef = useRef<HTMLElement>(null);
+  const dragRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 

@@ -143,7 +143,7 @@ export default function ChatBotWindow() {
       </div>
 
       {/* Input Area */}
-      <div className="p-4 border-t border-holo-border">
+      <div className="p-4 border-t border-holo-border flex-shrink-0">
         <form onSubmit={handleSubmit} className="flex items-center space-x-2">
           <Input
             value={input}
