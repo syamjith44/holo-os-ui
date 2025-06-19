@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(220, 20%, 8%);
+  --foreground: hsl(0, 0%, 85%);
+  --muted: hsl(220, 15%, 12%);
+  --muted-foreground: hsl(0, 0%, 50%);
+  --popover: hsl(220, 20%, 8%);
+  --popover-foreground: hsl(0, 0%, 85%);
+  --card: rgba(0, 0, 0, 0.4);
+  --card-foreground: hsl(0, 0%, 85%);
+  --border: rgba(0, 150, 200, 0.2);
+  --input: rgba(0, 150, 200, 0.2);
+  --primary: hsl(195, 100%, 45%);
+  --primary-foreground: hsl(220, 20%, 8%);
+  --secondary: rgba(0, 0, 0, 0.4);
+  --secondary-foreground: hsl(0, 0%, 85%);
+  --accent: rgba(0, 0, 0, 0.4);
+  --accent-foreground: hsl(0, 0%, 85%);
+  --destructive: hsl(0, 60%, 40%);
+  --destructive-foreground: hsl(0, 0%, 85%);
+  --ring: hsl(195, 100%, 45%);
+  --radius: 0.5rem;
+  
+  --holo-bg: hsl(220, 20%, 8%);
+  --holo-surface: rgba(0, 0, 0, 0.4);
+  --holo-accent: hsl(195, 100%, 45%);
+  --holo-text: hsl(0, 0%, 85%);
+  --holo-border: rgba(0, 150, 200, 0.2);
+}
+
+.dark {
+  --background: hsl(220, 20%, 8%);
+  --foreground: hsl(0, 0%, 85%);
+  --muted: hsl(220, 15%, 12%);
+  --muted-foreground: hsl(0, 0%, 50%);
+  --popover: hsl(220, 20%, 8%);
+  --popover-foreground: hsl(0, 0%, 85%);
+  --card: rgba(0, 0, 0, 0.4);
+  --card-foreground: hsl(0, 0%, 85%);
+  --border: rgba(0, 150, 200, 0.2);
+  --input: rgba(0, 150, 200, 0.2);
+  --primary: hsl(195, 100%, 45%);
+  --primary-foreground: hsl(220, 20%, 8%);
+  --secondary: rgba(0, 0, 0, 0.4);
+  --secondary-foreground: hsl(0, 0%, 85%);
+  --accent: rgba(0, 0, 0, 0.4);
+  --accent-foreground: hsl(0, 0%, 85%);
+  --destructive: hsl(0, 60%, 40%);
+  --destructive-foreground: hsl(0, 0%, 85%);
+  --ring: hsl(195, 100%, 45%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-mono antialiased bg-background text-foreground overflow-hidden;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background: var(--holo-bg);
+  }
+}
+
+@layer components {
+  .window-glass {
+    background: var(--holo-surface);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--holo-border);
+  }
+  
+  .wireframe-grid {
+    background-image: 
+      linear-gradient(rgba(0, 150, 200, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 150, 200, 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .hologram-glow {
+    box-shadow: 0 0 15px rgba(0, 150, 200, 0.1);
+  }
+  
+  .hologram-glow-strong {
+    box-shadow: 0 0 25px rgba(0, 150, 200, 0.15);
+  }
+  
+  .draggable {
+    cursor: move;
+  }
+  
+  .window-header:hover {
+    background: rgba(0, 150, 200, 0.08);
+  }
+  
+  .map-node {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--holo-accent);
+    background: rgba(0, 150, 200, 0.2);
+  }
+  
+  .map-connection {
+    border-top: 1px dashed rgba(0, 150, 200, 0.3);
+  }
+
+  .holo-button {
+    @apply px-3 py-2 text-xs border rounded transition-colors duration-200;
+    border-color: var(--holo-border);
+    color: var(--holo-text);
+  }
+
+  .holo-button:hover {
+    background: var(--holo-surface);
+  }
+
+  .holo-button-primary {
+    @apply holo-button;
+    border-color: var(--holo-accent);
+  }
+
+  .holo-button-primary:hover {
+    background: rgba(0, 150, 200, 0.15);
+  }
+
+  .holo-input {
+    @apply bg-transparent text-sm focus:outline-none transition-colors duration-200;
+    border: 1px solid var(--holo-border);
+    color: var(--holo-text);
+  }
+
+  .holo-input:focus {
+    border-color: var(--holo-accent);
+  }
+
+  .holo-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .holo-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .holo-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--holo-border);
+    border-radius: 2px;
+  }
+
+  .holo-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--holo-accent);
+  }
+}
+
+@layer utilities {
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+    box-shadow: 0 0 15px rgba(0, 150, 200, 0.1);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 25px rgba(0, 150, 200, 0.2);
+  }
+}
