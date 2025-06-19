@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, Circle } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { WindowInstance } from "@/hooks/useWindowManager";
+import SimpleGraphWindow from "@/components/windows/SimpleGraphWindow";
 
 interface TaskBarProps {
   windows: WindowInstance[];
@@ -32,9 +33,30 @@ export default function TaskBar({ windows, onCreateWindow }: TaskBarProps) {
 
   const handleNewWindow = () => {
     const windowTypes = [
-      { id: "terminal", title: "TERMINAL", component: <div className="p-4 font-mono text-green-400">$ Ready for commands...</div> },
-      { id: "files", title: "FILES", component: <div className="p-4">File system browser not implemented</div> },
-      { id: "settings", title: "SETTINGS", component: <div className="p-4">System settings panel</div> },
+      { 
+        id: "performance-graphs", 
+        title: "PERFORMANCE GRAPHS", 
+        component: <SimpleGraphWindow />,
+        config: { width: 350, height: 480 }
+      },
+      { 
+        id: "terminal", 
+        title: "TERMINAL", 
+        component: <div className="p-4 font-mono text-holo-accent">$ holographic_os v2.1.0<br/>$ system_ready<br/>$ _</div>,
+        config: { width: 500, height: 300 }
+      },
+      { 
+        id: "process-monitor", 
+        title: "PROCESS MONITOR", 
+        component: <div className="p-4 space-y-2 font-mono text-xs">
+          <div className="border-b border-holo-border pb-2 mb-2">PID | NAME | CPU% | MEM%</div>
+          <div>1024 | hologram.exe | 12.4 | 8.2</div>
+          <div>2048 | neural_net.py | 24.1 | 15.7</div>
+          <div>4096 | voice_engine | 8.9 | 4.3</div>
+          <div>8192 | websocket_srv | 3.2 | 2.1</div>
+        </div>,
+        config: { width: 450, height: 250 }
+      },
     ];
     
     const randomType = windowTypes[Math.floor(Math.random() * windowTypes.length)];
@@ -47,8 +69,8 @@ export default function TaskBar({ windows, onCreateWindow }: TaskBarProps) {
       {
         x: Math.random() * 300 + 200,
         y: Math.random() * 200 + 100,
-        width: 400,
-        height: 300
+        width: randomType.config.width,
+        height: randomType.config.height
       }
     );
   };

@@ -7,6 +7,7 @@ import ChatBotWindow from "@/components/windows/ChatBotWindow";
 import MapWindow from "@/components/windows/MapWindow";
 import CommunicationsWindow from "@/components/windows/CommunicationsWindow";
 import SystemMonitorWindow from "@/components/windows/SystemMonitorWindow";
+import SimpleGraphWindow from "@/components/windows/SimpleGraphWindow";
 
 export default function DesktopEnvironment() {
   const { windows, bringToFront, minimizeWindow, closeWindow, createWindow } = useWindowManager();
@@ -18,6 +19,7 @@ export default function DesktopEnvironment() {
     createWindow("maps", "NAVIGATION", <MapWindow />, { x: 550, y: 120, width: 500, height: 400 });
     createWindow("communications", "COMMUNICATIONS", <CommunicationsWindow />, { x: 1100, y: 200, width: 350, height: 450 });
     createWindow("system", "SYSTEM", <SystemMonitorWindow />, { x: 200, y: 300, width: 300, height: 250 });
+    createWindow("graphs", "PERFORMANCE GRAPHS", <SimpleGraphWindow />, { x: 600, y: 50, width: 350, height: 480 });
   }, [createWindow]);
 
   return (

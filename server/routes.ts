@@ -130,18 +130,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // System metrics API
   app.get('/api/system/metrics', async (req, res) => {
     try {
-      const metrics = await storage.getLatestSystemMetrics();
-      if (!metrics) {
-        // Generate fresh metrics if none exist
-        const freshMetrics = await storage.createSystemMetrics({
-          cpuUsage: Math.floor(Math.random() * 100),
-          memoryUsage: Math.floor(Math.random() * 100),
-          networkStatus: Math.random() > 0.1 ? 'CONNECTED' : 'DISCONNECTED',
-        });
-        res.json(freshMetrics);
-      } else {
-        res.json(metrics);
-      }
+      // Always generate fresh dynamic metrics for real-time graphs
+      const baseTime = Date.now();
+      const cpuBase = 45 + Math.sin(baseTime / 10000) * 20;
+      const memoryBase = 35 + Math.cos(baseTime / 8000) * 15;
+      
+      const freshMetrics = await storage.createSystemMetrics({
+        cpuUsage: Math.max(5, Math.min(95, Math.floor(cpuBase + (Math.random() - 0.5) * 10))),
+        memoryUsage: Math.max(10, Math.min(85, Math.floor(memoryBase + (Math.random() - 0.5) * 8))),
+        networkStatus: Math.random() > 0.05 ? 'CONNECTED' : 'DISCONNECTED',
+      });
+      res.json(freshMetrics);
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch system metrics' });
     }
